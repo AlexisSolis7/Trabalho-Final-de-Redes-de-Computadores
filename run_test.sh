@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script wrapper para executar teste Dijkstra com sudo
-# Arquivo: run_dijkstra_test.sh
+# Arquivo: run_test.sh
 
 echo "🧪 Executando Teste do Controlador Dijkstra"
 echo "============================================"
@@ -13,7 +13,7 @@ if ! nc -z 127.0.0.1 6633 2>/dev/null; then
     echo "❌ ERRO: Controlador Ryu não está rodando na porta 6633"
     echo ""
     echo "🚀 Para iniciar o controlador, execute em outro terminal:"
-    echo "   ./start_dijkstra.sh"
+    echo "   ./start_controller.sh"
     echo ""
     exit 1
 fi
@@ -23,4 +23,4 @@ echo ""
 
 # Executar teste com sudo
 echo "🔐 Executando teste com sudo..."
-sudo python3 test_dijkstra.py
+sudo python3 dijkstra_test.py

@@ -8,7 +8,7 @@ echo "========================================"
 # Verificar se o controlador está rodando
 if ! nc -z 127.0.0.1 6633 2>/dev/null; then
     echo "❌ ERRO: Controlador não está rodando!"
-    echo "🚀 Execute primeiro: ./start_dijkstra.sh"
+    echo "🚀 Execute primeiro: ./start_controller.sh"
     exit 1
 fi
 

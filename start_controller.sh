@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script para iniciar o controlador Dijkstra
-# Arquivo: start_dijkstra.sh
+# Arquivo: start_controller.sh
 
 echo "🧠 Iniciando Controlador Dijkstra..."
 echo "===================================="
@@ -18,4 +18,4 @@ echo ""
 # Iniciar o controlador com verbose
 ryu-manager --verbose --wsapi-port 8080 \
   --observe-links \
-  simple_switch_13.py
+  dijkstra_controller.py
