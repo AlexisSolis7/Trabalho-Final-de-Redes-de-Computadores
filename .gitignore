@@ -21,11 +21,17 @@ wheels/
 *.egg
 MANIFEST
 
-# Virtual Environment
+# Virtual Environment (Ambiente Python)
 ryu_env/
 venv/
 env/
 ENV/
+bin/
+include/
+lib/
+lib64
+pyvenv.cfg
+etc/
 
 # IDEs
 .vscode/
@@ -34,7 +40,7 @@ ENV/
 *.swo
 *~
 
-# Logs
+# Logs e resultados
 logs/
 *.log
 results/
@@ -50,3 +56,8 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# Arquivos específicos do projeto que não devem ser versionados
+controllers/
+tests/
+topologies/
