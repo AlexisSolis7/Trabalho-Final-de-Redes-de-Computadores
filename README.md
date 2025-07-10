@@ -238,7 +238,7 @@ watch -n 1 "sudo ovs-ofctl dump-flows s1"
 - **Ryu Framework** - Fundação SDN robusta
 - **NetworkX** - Biblioteca de algoritmos de grafos
 - **Mininet** - Ambiente de simulação de redes
-- **Universidade [Nome]** - Suporte acadêmico
+- **Universidade Federal de Santa Catarina** - Suporte acadêmico
 
 ---
 
