@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# 🚀 Script de Instalação Automática - Controlador SDN Dijkstra
+#  Script de Instalação Automática - Controlador SDN Dijkstra
 # Autor: Equipe de Desenvolvimento
 # Versão: 1.0
 
 set -e  # Parar script em caso de erro
 
-echo "🌐 === INSTALAÇÃO DO CONTROLADOR SDN DIJKSTRA === 🌐"
+echo " === INSTALAÇÃO DO CONTROLADOR SDN DIJKSTRA === "
 echo ""
 
 # Verificar se está rodando como usuário normal (não root)
 if [[ $EUID -eq 0 ]]; then
    echo "❌ Este script não deve ser executado como root"
-   echo "💡 Execute como usuário normal: ./setup.sh"
+   echo " Execute como usuário normal: ./setup.sh"
    exit 1
 fi
 
@@ -22,7 +22,7 @@ if ! command -v apt &> /dev/null; then
     exit 1
 fi
 
-echo "📋 Verificando pré-requisitos..."
+echo " Verificando pré-requisitos..."
 
 # Verificar Python 3.8+
 python_version=$(python3 -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
@@ -36,11 +36,11 @@ fi
 echo "✅ Python $python_version encontrado"
 
 # Atualizar sistema
-echo "🔄 Atualizando sistema..."
+echo " Atualizando sistema..."
 sudo apt update
 
 # Instalar dependências do sistema
-echo "📦 Instalando dependências do sistema..."
+echo " Instalando dependências do sistema..."
 sudo apt install -y \
     python3-pip \
     python3-dev \
@@ -52,7 +52,7 @@ sudo apt install -y \
 
 # Verificar se Mininet já está instalado
 if ! command -v mn &> /dev/null; then
-    echo "🌐 Instalando Mininet..."
+    echo " Instalando Mininet..."
     sudo apt install -y mininet
     
     # Verificar instalação do Open vSwitch
@@ -81,7 +81,7 @@ echo "📈 Atualizando pip..."
 pip install --upgrade pip
 
 # Instalar dependências Python
-echo "📚 Instalando dependências Python..."
+echo " Instalando dependências Python..."
 if [ -f "requirements.txt" ]; then
     pip install -r requirements.txt
 else
@@ -90,7 +90,7 @@ else
 fi
 
 # Verificar instalação do Ryu
-echo "🧪 Testando instalação do Ryu..."
+echo " Testando instalação do Ryu..."
 if python -c "import ryu" 2>/dev/null; then
     echo "✅ Ryu instalado com sucesso"
 else
@@ -108,11 +108,11 @@ else
 fi
 
 # Criar diretórios necessários
-echo "📁 Criando estrutura de diretórios..."
+echo " Criando estrutura de diretórios..."
 mkdir -p logs tests/results
 
 # Configurar permissões para Mininet
-echo "🔐 Configurando permissões..."
+echo " Configurando permissões..."
 sudo usermod -a -G sudo $USER
 
 # Testar conectividade básica do Mininet
@@ -125,14 +125,14 @@ else
 fi
 
 echo ""
-echo "🎉 === INSTALAÇÃO CONCLUÍDA COM SUCESSO! === 🎉"
+echo " === INSTALAÇÃO CONCLUÍDA COM SUCESSO! === "
 echo ""
 echo "🚀 Para executar o projeto:"
 echo "   1. source ryu_env/bin/activate"
 echo "   2. ryu-manager dijkstra_controller.py"
 echo "   3. Em outro terminal: sudo python3 dijkstra_topologia.py"
 echo ""
-echo "📖 Para mais informações: cat README.md"
-echo "🆘 Problemas? Verifique os logs em: logs/"
+echo " Para mais informações: cat README.md"
+echo " Problemas? Verifique os logs em: logs/"
 echo ""
-echo "✨ Boa sorte com seu projeto SDN! ✨"
+echo " Boa sorte com seu projeto SDN! "
