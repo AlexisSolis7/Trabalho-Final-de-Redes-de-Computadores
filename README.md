@@ -1,165 +1,254 @@
-# Controlador SDN com Algoritmo de Dijkstra
+# Controlador SDN com Algoritmo Dijkstra
 
-Um controlador SDN (Software-Defined Networking) implementado com Ryu que utiliza o algoritmo de Dijkstra para calcular rotas ótimas entre hosts na rede.
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
+[![Ryu](https://img.shields.io/badge/Ryu-Framework-green.svg)](https://ryu-sdn.org)
+[![OpenFlow](https://img.shields.io/badge/OpenFlow-1.3-orange.svg)](https://opennetworking.org)
+[![Mininet](https://img.shields.io/badge/Mininet-2.3+-red.svg)](http://mininet.org)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## 🎯 Funcionalidades
+> **Implementação de um controlador SDN inteligente que utiliza o algoritmo Dijkstra para roteamento otimizado em redes definidas por software.**
 
-- **Roteamento Ótimo**: Usa algoritmo de Dijkstra para encontrar o caminho mais curto
-- **Auto-descoberta**: Detecta automaticamente a topologia da rede
-- **Instalação Proativa**: Instala flows preemptivamente em todos os switches
-- **Logs Detalhados**: Sistema completo de logging para debug e análise
-- **Testes Automatizados**: Scripts prontos para validar o funcionamento
+## Visão Geral
 
-## 🔧 Arquitetura
+Este projeto implementa um controlador SDN usando o framework Ryu que aplica o algoritmo Dijkstra para encontrar e instalar os caminhos mais curtos entre hosts na rede. O sistema é projetado para ambientes acadêmicos e demonstrações de conceitos SDN.
+
+## Estrutura do Repositório
 
 ```
-Mininet Topology ←→ OpenFlow ←→ Ryu Controller
-                                      ↓
-                               Dijkstra Algorithm
-                                      ↓
-                               Flow Installation
+ryu_ambiente_final/
+├── dijkstra_controller.py      # Controlador principal com Dijkstra
+├── dijkstra_topologia.py       # Topologias de teste do Mininet
+├── requirements.txt            # Dependências do projeto
+├── setup.sh                    # Script de instalação automática
+├── LICENSE                     # Licença MIT
+└── README.md                   # Este arquivo
 ```
 
-## 📦 Requisitos do Sistema
+## 🚀 Início Rápido
 
-- **Sistema Operacional**: Linux (testado no Ubuntu 20.04+)
+### Pré-requisitos
+
+- **Sistema Operacional**: Ubuntu 18.04+ / Debian 9+
 - **Python**: 3.8 ou superior
 - **Privilégios**: sudo (para Mininet)
+- **RAM**: Mínimo 2GB recomendado
 
-## 🚀 Instalação Rápida
+### Instalação Automática
 
-### 1. Clonar o Repositório
 ```bash
-git clone https://github.com/AlexisSolis7/Trabalho-Final-de-Redes-de-Computadores.git
-cd Trabalho-Final-de-Redes-de-Computadores
+git clone https://github.com/seu-usuario/ryu_ambiente_final.git
+cd ryu_ambiente_final
+chmod +x setup.sh
+./setup.sh
 ```
 
-### 2. Instalar Dependências
+### Instalação Manual
+
 ```bash
-# Atualizar sistema
+# 1. Instalar dependências do sistema
 sudo apt update
+sudo apt install python3-pip python3-dev build-essential
 
-# Instalar Python e dependências básicas
-sudo apt install -y python3 python3-pip python3-venv
-
-# Instalar Mininet e Open vSwitch
-sudo apt install -y mininet openvswitch-switch
-
-# Criar ambiente virtual
+# 2. Criar ambiente virtual
 python3 -m venv ryu_env
 source ryu_env/bin/activate
 
-# Instalar Ryu e dependências
-pip install --upgrade pip
-pip install setuptools==66.1.1  # Versão compatível
-pip install eventlet==0.33.3    # Versão compatível
-pip install ryu networkx
+# 3. Instalar dependências Python
+pip install -r requirements.txt
+
+# 4. Instalar Mininet (se necessário)
+git clone https://github.com/mininet/mininet
+cd mininet
+sudo ./util/install.sh -nfv
 ```
 
-### 3. Tornar Scripts Executáveis
+## Como Executar
+
+### Execução Local (Uma Máquina)
+
+#### Terminal 1 - Controlador SDN
 ```bash
-chmod +x *.sh
-```
-
-## 🎮 Como Usar
-
-### Execução em 2 Terminais
-
-**Terminal 1 - Controlador:**
-```bash
-./start_controller.sh
-```
-
-**Terminal 2 - Teste:**
-```bash
-./run_test.sh
-```
-
-### Ou Teste Rápido
-```bash
-./quick_test.sh
-```
-
-## 📁 Estrutura do Projeto
-
-```
-├── dijkstra_controller.py    # Controlador principal com Dijkstra
-├── dijkstra_test.py         # Script de teste com topologias
-├── start_controller.sh      # Inicia o controlador
-├── run_test.sh             # Executa testes completos
-├── quick_test.sh           # Teste rápido e simples
-├── outros_arquivos/        # Arquivos auxiliares e versões antigas
-└── README.md              # Esta documentação
-```
-
-## 🧪 Testes Disponíveis
-
-### 1. Topologia em Árvore
-```
-     h1     h2
-      |     |
-     s1 --- s2 --- s3
-            |      |
-           h3     h4
-```
-
-### 2. Topologia Linear
-```
-h1 - s1 - s2 - s3 - h2
-```
-
-## 🔍 Como Funciona o Algoritmo
-
-1. **Descoberta da Topologia**: O controlador escuta eventos do OpenFlow para mapear switches e links
-2. **Construção do Grafo**: Cria um grafo da rede usando NetworkX
-3. **Cálculo de Rotas**: Para cada par de hosts, calcula o caminho mais curto com Dijkstra
-4. **Instalação de Flows**: Instala flows proativamente em todos os switches do caminho
-
-## 📊 Logs e Debug
-
-O controlador gera logs detalhados mostrando:
-- Descoberta de switches e links
-- Cálculo de caminhos ótimos
-- Instalação de flow entries
-- Estatísticas de rede
-
-## 🐛 Solução de Problemas
-
-### Erro: "Address already in use"
-```bash
-sudo fuser -k 6633/tcp
-```
-
-### Erro: "Module not found"
-```bash
+cd ryu_ambiente_final
 source ryu_env/bin/activate
-pip install ryu networkx
+ryu-manager dijkstra_controller.py --verbose
 ```
 
-### Mininet não funciona
+#### Terminal 2 - Topologia Mininet
 ```bash
-sudo mn -c  # Limpar configurações antigas
+cd ryu_ambiente_final
+sudo python3 dijkstra_topologia.py
 ```
 
-## 🤝 Contribuições
+### Execução Distribuída (Duas Máquinas)
 
-1. Fork o projeto
-2. Crie uma branch para sua feature
-3. Commit suas mudanças
-4. Push para a branch
-5. Abra um Pull Request
+#### Máquina 1 (Controlador)
+```bash
+# Descobrir IP da máquina
+ip addr show | grep "inet " | grep -v 127.0.0.1
 
-## 📜 Licença
+# Executar controlador
+source ryu_env/bin/activate
+ryu-manager dijkstra_controller.py --verbose
+```
 
-Este projeto é open source e está disponível sob a licença MIT.
+#### Máquina 2 (Mininet)
+```bash
+# Editar dijkstra_topologia.py
+# Alterar: controller_ip = "127.0.0.1"  
+# Para:    controller_ip = "IP_DA_MAQUINA_1"
 
-## 👥 Autores
+sudo python3 dijkstra_topologia.py
+```
 
-- **Alexis Solis** - *Desenvolvimento inicial* - [GitHub](https://github.com/AlexisSolis7)
+> **⚠️ Importante**: Configurar firewall para permitir porta 6653 (OpenFlow)
 
-## 🔗 Links Úteis
+## Testando a Rede
 
-- [Documentação do Ryu](https://ryu.readthedocs.io/)
-- [Mininet](http://mininet.org/)
-- [OpenFlow](https://opennetworking.org/sdn-definition/)
-- [Algoritmo de Dijkstra](https://pt.wikipedia.org/wiki/Algoritmo_de_Dijkstra)
+### Testes Básicos de Conectividade
+
+```bash
+# No prompt do Mininet
+mininet> pingall                    # Teste completo de conectividade
+mininet> h1 ping -c 4 h2           # Ping específico entre hosts
+mininet> iperf h1 h2               # Teste de performance
+```
+
+### Visualização e Debugging
+
+```bash
+# Visualizar topologia descoberta
+mininet> net
+
+# Verificar flows instalados
+mininet> dpctl dump-flows
+
+# Ver portas dos switches
+mininet> dpctl show
+
+# Logs detalhados do controlador
+tail -f /tmp/ryu.log
+```
+
+## Como Funciona
+
+### Fluxo do Algoritmo
+
+1. **Descoberta de Topologia**
+   - Detecta switches e hosts automaticamente
+   - Mapeia links e suas capacidades
+   - Constrói grafo da rede em tempo real
+
+2. **Cálculo de Rotas**
+   - Aplica algoritmo Dijkstra usando NetworkX
+   - Considera peso dos links (latência/banda)
+   - Encontra caminho ótimo entre origem e destino
+
+3. **Instalação de Flows**
+   - Instala regras OpenFlow nos switches do caminho
+   - Configura match fields e actions
+   - Otimiza tabelas de flows para performance
+
+4. **Roteamento Adaptativo**
+   - Monitora mudanças na topologia
+   - Recalcula rotas quando necessário
+   - Garante alta disponibilidade da rede
+
+### Características Técnicas
+
+- **Alto Desempenho**: Cálculos otimizados com NetworkX
+- **Confiável**: Tratamento de erros e reconexão automática
+- **Escalável**: Suporta topologias complexas
+- **Flexível**: Fácil personalização de métricas
+
+## Topologias Disponíveis
+
+### Topologia Complexa (Padrão)
+
+```
+    h1 ---- s1 ---- s2 ---- h2
+            |        |
+            s3 ---- s4
+            |        |
+           h3       s5
+```
+
+- **5 switches**, **3 hosts**
+- **Múltiplos caminhos** entre h1-h2
+- **Redundância** para alta disponibilidade
+- **Teste ideal** para demonstrar Dijkstra
+
+### Topologia Linear
+
+```
+h1 ---- s1 ---- s2 ---- s3 ---- h2
+```
+
+- **3 switches**, **2 hosts**
+- **Caminho único** (mais simples)
+- **Ideal para testes básicos**
+
+## Desenvolvimento e Contribuição
+
+### Estrutura do Código
+
+```python
+# dijkstra_controller.py - Componentes principais:
+class DijkstraController(app_manager.RyuApp):
+    ├── topology_discovery()    # Descobre topologia
+    ├── calculate_shortest_path() # Algoritmo Dijkstra  
+    ├── install_flows()         # Instala regras OpenFlow
+    └── packet_in_handler()     # Processa pacotes novos
+```
+
+### Executando Testes
+
+```bash
+# Testes unitários
+python -m pytest tests/ -v
+
+# Teste de integração
+./scripts/integration_test.sh
+
+# Benchmark de performance  
+python tests/benchmark_dijkstra.py
+```
+
+### Debug e Logs
+
+```bash
+# Logs detalhados
+export RYU_LOG_LEVEL=DEBUG
+ryu-manager dijkstra_controller.py
+
+# Monitoramento em tempo real
+watch -n 1 "sudo ovs-ofctl dump-flows s1"
+```
+
+## Equipe de Desenvolvimento
+
+| Membro | Papel | Contato |
+|-----------|----------|------------|
+| **[Seu Nome]** | Desenvolvedor Principal | seu.email@universidade.edu |
+| **[Nome 2]** | Testes e Validação | email2@universidade.edu |
+| **[Nome 3]** | Documentação | email3@universidade.edu |
+
+## Licença
+
+Este projeto está licenciado sob a **MIT License** - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+## Agradecimentos
+
+- **Ryu Framework** - Fundação SDN robusta
+- **NetworkX** - Biblioteca de algoritmos de grafos
+- **Mininet** - Ambiente de simulação de redes
+- **Universidade [Nome]** - Suporte acadêmico
+
+---
+
+<div align="center">
+
+**⭐ Se este projeto foi útil, deixe uma estrela!**
+
+[![GitHub stars](https://img.shields.io/github/stars/seu-usuario/ryu_ambiente_final.svg?style=social&label=Star)](https://github.com/seu-usuario/ryu_ambiente_final)
+
+</div>
