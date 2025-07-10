@@ -148,5 +148,5 @@ if __name__ == '__main__':
         print("\n\n🛑 Teste interrompido pelo usuário")
     except Exception as e:
         print(f"\n❌ Erro: {e}")
-        print("💡 Certifique-se de que o controlador esteja rodando!")
+        print(" Certifique-se de que o controlador esteja rodando!")
         print("   Terminal 1: ryu-manager dijkstra_controller.py")
