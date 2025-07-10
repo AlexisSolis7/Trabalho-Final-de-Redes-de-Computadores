@@ -232,10 +232,6 @@ watch -n 1 "sudo ovs-ofctl dump-flows s1"
 | **[Nome 2]** | Testes e Validação | email2@universidade.edu |
 | **[Nome 3]** | Documentação | email3@universidade.edu |
 
-## Licença
-
-Este projeto está licenciado sob a **MIT License** - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
 ## Agradecimentos
 
 - **Ryu Framework** - Fundação SDN robusta
