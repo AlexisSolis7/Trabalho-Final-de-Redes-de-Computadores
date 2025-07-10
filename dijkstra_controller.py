@@ -21,7 +21,7 @@ class DijkstraSwitch13(app_manager.RyuApp):
         self.hosts = {}           # {mac: (dpid, port)}
         self.links = {}           # {(src_dpid, dst_dpid): (src_port, dst_port)}
         
-        self.logger.info("🚀 Controlador Dijkstra iniciado!")
+        self.logger.info(" Controlador Dijkstra iniciado!")
 
     @set_ev_cls(event.EventSwitchEnter)
     def switch_enter_handler(self, ev):
