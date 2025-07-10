@@ -24,7 +24,7 @@ ryu_ambiente_final/
 └── README.md                   # Este arquivo
 ```
 
-## 🚀 Início Rápido
+##  Início Rápido
 
 ### Pré-requisitos
 
