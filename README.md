@@ -228,7 +228,7 @@ watch -n 1 "sudo ovs-ofctl dump-flows s1"
 
 | Membro | Papel | Contato |
 |-----------|----------|------------|
-| **[Seu Nome]** | Desenvolvedor Principal | seu.email@universidade.edu |
+| **[Alexis Solis]** | Desenvolvedor Principal | seu.email@universidade.edu |
 | **[Nome 2]** | Testes e Validação | email2@universidade.edu |
 | **[Nome 3]** | Documentação | email3@universidade.edu |
 
