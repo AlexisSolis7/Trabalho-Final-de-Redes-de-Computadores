@@ -230,7 +230,7 @@ watch -n 1 "sudo ovs-ofctl dump-flows s1"
 |-----------|----------|------------|
 | **Alexis Solis** | Desenvolvedor | alexissolis396@gmail.com |
 | **Marcolino de Lemos** | Desenvolvedor  | m____@gmail.com |
-| **Joäo Sebastiäo** | Testes e Validação | _____@universidade.edu |
+| **Joäo Monteiro** | Testes e Validação | johnymonteiiro@gmail.com |
 | **Abraäo Sacaia** | Documentação | ________@universidade.edu |
 
 ## Agradecimentos
